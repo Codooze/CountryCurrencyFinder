@@ -1,6 +1,5 @@
 package com.example.CountryCurrency.controller;
 
-import com.example.CountryCurrency.model.Country;
 import com.example.CountryCurrency.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +20,20 @@ public class CountryController {
         this.countryService = countryService;
     }
 
-@GetMapping("/{name}")
+/*@GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
 public Mono<ResponseEntity<Country>> getCountryByName(@PathVariable String name) {
+    System.out.println("countryService.getCountryByName(name)");
     return countryService.getCountryByName(name)
             .map(ResponseEntity::ok)
             .defaultIfEmpty(ResponseEntity.notFound().build());
+    }*/
+
+    @GetMapping(value = "/{name}")
+    public Mono<ResponseEntity<String>> getCountryByName2(@PathVariable String name) {
+        System.out.println("countryService.getCountryByName2(name)");
+        return countryService.getCountryByName(name)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 }
 

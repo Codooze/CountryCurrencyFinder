@@ -8,6 +8,10 @@ public class Country {
     private Name name;
     private Map<String, CurrencyDetail> currencies;
 
+    public Object getName() {
+        return name;
+    }
+
     // getters, setters, constructors
 
     public static class Name {
