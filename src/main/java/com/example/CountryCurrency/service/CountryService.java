@@ -1,5 +1,6 @@
 package com.example.CountryCurrency.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -17,12 +18,12 @@ public class CountryService {
         this.webClient = WebClient.create(API_URL);
     }
 
-    public Mono<String> getCountryByName(String name) {
+    public Mono<JsonNode> getCountryByName(String name) {
         logger.debug("Fetching information for country: {}", name);
 
         return webClient.get()
                 .uri(name)
                 .retrieve()
-                .bodyToMono(String.class);
+                .bodyToMono(JsonNode.class);
     }
 }
